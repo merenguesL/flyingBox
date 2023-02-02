@@ -13,6 +13,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenuBar>
@@ -29,6 +30,9 @@ class Ui_FlyingBoxClass
 public:
     QWidget *centralWidget;
     QTextEdit *textEdit;
+    QWidget *horizontalLayoutWidget;
+    QHBoxLayout *horizontalLayout;
+    QPushButton *pushButton_setup;
     QPushButton *pushButton_fly;
     QPushButton *pushButton_shake;
     QMenuBar *menuBar;
@@ -39,7 +43,7 @@ public:
     {
         if (FlyingBoxClass->objectName().isEmpty())
             FlyingBoxClass->setObjectName(QString::fromUtf8("FlyingBoxClass"));
-        FlyingBoxClass->resize(600, 458);
+        FlyingBoxClass->resize(608, 502);
         centralWidget = new QWidget(FlyingBoxClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         textEdit = new QTextEdit(centralWidget);
@@ -48,16 +52,33 @@ public:
         QFont font;
         font.setPointSize(20);
         textEdit->setFont(font);
-        pushButton_fly = new QPushButton(centralWidget);
+        horizontalLayoutWidget = new QWidget(centralWidget);
+        horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
+        horizontalLayoutWidget->setGeometry(QRect(20, 350, 561, 80));
+        horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        pushButton_setup = new QPushButton(horizontalLayoutWidget);
+        pushButton_setup->setObjectName(QString::fromUtf8("pushButton_setup"));
+
+        horizontalLayout->addWidget(pushButton_setup);
+
+        pushButton_fly = new QPushButton(horizontalLayoutWidget);
         pushButton_fly->setObjectName(QString::fromUtf8("pushButton_fly"));
-        pushButton_fly->setGeometry(QRect(50, 360, 181, 28));
-        pushButton_shake = new QPushButton(centralWidget);
+
+        horizontalLayout->addWidget(pushButton_fly);
+
+        pushButton_shake = new QPushButton(horizontalLayoutWidget);
         pushButton_shake->setObjectName(QString::fromUtf8("pushButton_shake"));
-        pushButton_shake->setGeometry(QRect(340, 360, 181, 28));
+
+        horizontalLayout->addWidget(pushButton_shake);
+
         FlyingBoxClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(FlyingBoxClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 600, 26));
+        menuBar->setGeometry(QRect(0, 0, 608, 26));
         FlyingBoxClass->setMenuBar(menuBar);
         mainToolBar = new QToolBar(FlyingBoxClass);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -74,6 +95,7 @@ public:
     void retranslateUi(QMainWindow *FlyingBoxClass)
     {
         FlyingBoxClass->setWindowTitle(QApplication::translate("FlyingBoxClass", "FlyingBox", 0, QApplication::UnicodeUTF8));
+        pushButton_setup->setText(QApplication::translate("FlyingBoxClass", "\350\256\276\347\275\256", 0, QApplication::UnicodeUTF8));
         pushButton_fly->setText(QApplication::translate("FlyingBoxClass", "\351\243\236\350\241\214", 0, QApplication::UnicodeUTF8));
         pushButton_shake->setText(QApplication::translate("FlyingBoxClass", "\346\212\226\345\212\250", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
