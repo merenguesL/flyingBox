@@ -9,6 +9,7 @@
 #include <QLabel>
 #include <iostream>
 #include "Setup.h"
+#include <thread>
 
 class FlyingBox : public QMainWindow
 {
@@ -42,16 +43,16 @@ public:
 	  */
 	void paintEvent (QPaintEvent *);
 	
+	
 private:
 	
 	/**
 	  *  @brief  	 算出终点位置(此函数想实现一个撞墙反弹的效果，但算法暂时有问题) 
 	  *  @param[in]  
-	  *				 directionion:飞出的方向
 	  *				 curX:窗口当前左上角的X坐标
 	  *				 curY:窗口当前左上角的Y坐标			 
 	  */
-	QPoint getFinalPoint(int directionion,int &curX,int &curY);
+	QPoint getFinalPoint(int &curX,int &curY);
 
 	/**
 	  *  @brief  	 获取一个随机的坐标
@@ -65,21 +66,12 @@ public:
 	int curX;			//窗口当前左上角的X坐标
 	int curY;			//窗口当前左上角的Y坐标
 
-	QPropertyAnimation *pAnimation;
-	
-	enum directionion   //飞行的反向。如果是东北方向之类的，为45度角飞出
-	{
-		North,
-		NorthWest,
-		West,
-		SouthWest,
-		South,
-		SouthEast,
-		East,
-		NorthEast
-	};
+	int maxX;			//左上角最大到达的x坐标
+	int maxY;			//左上角最大到达的Y坐标
 
-	int direction; //方向
+	bool xless, yless;	//x和y坐标终点坐标相对初始坐标是否减小
+
+	QPropertyAnimation *pAnimation;
 
 public slots:
 
@@ -92,6 +84,7 @@ private:
 	Ui::FlyingBoxClass ui;
 
 	bool isShaking;
+	bool isFlying;
 
 	OPTIONS option;
 };
