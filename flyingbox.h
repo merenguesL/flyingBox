@@ -8,6 +8,8 @@
 #include <QTime>
 #include <QLabel>
 #include <iostream>
+#include "Setup.h"
+
 class FlyingBox : public QMainWindow
 {
 	Q_OBJECT
@@ -31,10 +33,9 @@ public:
 	
 	/**
 	  *  @brief  	 窗口飞来飞去
-	  *  @param[in]  directionion:窗口飞的方向
 	  *				
 	  */
-	void fly(int directionion);
+	void fly();
 	
 	/**
 	  *  @brief  	实时显示当前位置
@@ -81,14 +82,18 @@ public:
 	int direction; //方向
 
 public slots:
-		void loopFinished();
-		void OnFlyClicked();
-		void OnShakeClicked();
+
+		void changeFlyDirection();
+		void onFlyClicked();
+		void onShakeClicked();
+		void onSetupClicked();
 
 private:
 	Ui::FlyingBoxClass ui;
 
 	bool isShaking;
+
+	OPTIONS option;
 };
 
 #endif

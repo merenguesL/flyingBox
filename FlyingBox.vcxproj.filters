@@ -13,6 +13,12 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_flyingbox.cpp">
       <Filter>资源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Setup.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Setup.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="flyingbox.h">
@@ -20,6 +26,9 @@
     </CustomBuild>
     <CustomBuild Include="flyingbox.ui">
       <Filter>资源文件</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Setup.h">
+      <Filter>头文件</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
